@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_Notes_Activity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/backbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/ic_baseline_arrow_back_24">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/img_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="18dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_baseline_check_24"
+                >
+            </ImageView>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+    
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:inputType="textPersonName"
+        android:hint="Title"
+        android:textSize="26sp"
+        >
+    </EditText>
+    <EditText
+        android:id="@+id/et_notes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:gravity="top"
+        android:lineSpacingMultiplier="1.8"
+        app:layout_constraintStart_toStartOf="@id/et_title"
+        app:layout_constraintEnd_toEndOf="@id/et_title"
+        app:layout_constraintTop_toBottomOf="@id/et_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="textMultiLine"
+        android:hint="Start typing"
+        android:textSize="24sp"
+        >
+    </EditText>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
