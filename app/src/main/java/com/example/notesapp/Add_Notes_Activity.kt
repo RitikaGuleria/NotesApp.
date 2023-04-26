@@ -23,24 +23,34 @@ class Add_Notes_Activity : AppCompatActivity() {
 
         binding = ActivityAddNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         try{
             old_note = intent.getSerializableExtra("current_note") as Note
+//            The getSerializableExtra() method is used to retrieve data that was passed between
+//            activities as a Serializable object. The parameter "current_note" is the key used to
+//            identify the data that was put in the Intent by the calling activity.
             binding.etTitle.setText(old_note.title)
             binding.etNotes.setText(old_note.note)
             isUpdate=true
-        }catch (e : Exception){
+        }
+        catch (e : Exception)
+        {
             e.printStackTrace()
         }
         binding.imgCheck.setOnClickListener{
             val title=binding.etTitle.text.toString()
             val note_desc=binding.etNotes.text.toString()
 
-            if(title.isNotEmpty() || note_desc.isNotEmpty()){
+            if(title.isNotEmpty() || note_desc.isNotEmpty())
+            {
                 val formatter=SimpleDateFormat("EEE,d MMM yyyy HH:mm a")
-                if(isUpdate){
+
+                if(isUpdate)
+                {
                     note=Note(old_note.id,title,note_desc,formatter.format(Date()))
                 }
-                else{
+                else
+                {
                     note=Note(null,title,note_desc,formatter.format(Date()))
                 }
                 val intent= Intent()

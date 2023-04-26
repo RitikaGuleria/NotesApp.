@@ -28,10 +28,18 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NotesClickListener, Popup
     lateinit var adapter: NotesAdapter
     lateinit var selectedNote : Note
 
-    private val updateNote = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->
 
+    //update the existing code
+
+    private val updateNote = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+    { result->
         if(result.resultCode == Activity.RESULT_OK){
             val note = result.data?.getSerializableExtra("note") as? Note
+//            The code first uses the data property of the result object to retrieve the data bundle
+//            from the intent result. Then, it calls the getSerializableExtra method on the data bundle
+//            to retrieve the value associated with the "note" key as a serializable object.
+//            Finally, it uses the safe cast operator as? to cast the serializable object to a Note
+//            object, or null if the object cannot be cast to Note
             if(note!=null){
                 viewModel.updateNote(note)
             }
@@ -61,22 +69,27 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NotesClickListener, Popup
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2,LinearLayout.VERTICAL)
         adapter = NotesAdapter(this,this)
+
         binding.recyclerView.adapter = adapter
 
-        val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
-
+        //floating action button to add note functionality
+        val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result->
             if(result.resultCode == Activity.RESULT_OK){
-                val note=result.data?.getSerializableExtra("note") as?Note
+                val note=result.data?.getSerializableExtra("note") as? Note
                 if(note!=null){
                     viewModel.insertNote(note)
                 }
             }
         }
+
         binding.fbAddNote.setOnClickListener{
             val intent = Intent(this,Add_Notes_Activity::class.java)
             getContent.launch(intent)
         }
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener
+        {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }

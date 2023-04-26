@@ -58,7 +58,8 @@ class NotesAdapter(private val context: Context, val listener: NotesClickListene
         notifyDataSetChanged()
     }
 
-    fun filterList(search : String){
+    fun filterList(search : String)
+    {
         NotesList.clear()
         for(item in fullList){
             if(item.title?.lowercase()?.contains(search.lowercase())==true ||
@@ -85,6 +86,9 @@ class NotesAdapter(private val context: Context, val listener: NotesClickListene
         return list[randomIndex]
     }
 
+//    The RecyclerView requests views, and binds the views to their data, by calling methods in the
+//    adapter. we can define the adapter by extending RecyclerView.Adapter .
+//    The layout manager arranges the individual elements in your list.
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
         val notes_layout = itemView.findViewById<CardView>(R.id.card_layout)
